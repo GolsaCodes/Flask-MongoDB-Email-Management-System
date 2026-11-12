@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gmail Home Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+        }
+        
+        .container {
+            width: 100vw; 
+            max-width: 1200px;
+            margin: 20px auto;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background-color: #007bff;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .top-bar {
+            background-color: #f2f2f2;
+            padding: 10px 0;
+            text-align: center;
+        }
+        
+        .search-icon {
+            color: #666;
+            cursor: pointer;
+        }
+        
+        .search-bar {
+            display: inline-block;
+            border-radius: 20px;
+            border: 1px solid #ccc;
+            padding: 8px 16px;
+            margin-bottom: 10px;
+        }
+        
+        .options-container {
+            display: flex;
+            justify-content: flex-start;
+        }
+        
+        .options {
+            background-color: #f2f2f2;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .options p {
+            padding: 10px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .options p:hover,
+        .active-link {
+            background-color: #007bff; 
+            color: #fff; 
+        }
+        
+        .options a {
+            color: inherit;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>Welcome to Gmail</h1>
+    </div>
+    <div class="top-bar">
+        <span class="search-icon">🔍</span>
+        <input type="text" class="search-bar" placeholder="Search mail">
+    </div>
+    <div class="options-container">
+        <div class="options">
+            <p><a href="{{ url_for('new_email') }}" id="newEmail-link">New Email</a></p>
+            <p><a href="{{ url_for('inbox') }}" id="inbox-link">Inbox</a></p>
+            <p><a href="{{ url_for('sent') }}" id="sent-link">Sent</a></p>
+            <p><a href="{{ url_for('report') }}" id="report-link">Report</a></p>
+            <p><a href="{{ url_for('alphabetic_report') }}" id="report-link">Alphabetic Report</a></p>
+            <p><a href="{{ url_for('unread_inbox') }}" id="unread-link">Unread Emails</a></p>
+
+
+        </div>
+    </div>
+</div>
+
+<script>
+
+    const newEmail_link = document.getElementById('newEmail-link');
+    const inboxLink = document.getElementById('inbox.html');
+    const sentLink = document.getElementById('sent-link');
+    const reportLink = document.getElementById('report-link');
+    const alphabetic_report = document.getElementById('alphabetic-report-link');
+    const unread_Emails = document.getElementById('unread-link');
+
+
+
+    newEmail_link.addEventListener('click', handleLinkClick);
+    inboxLink.addEventListener('click', handleLinkClick);
+    sentLink.addEventListener('click', handleLinkClick);
+
+    newEmail_link.addEventListener('mouseover', handleLinkMouseover);
+    inboxLink.addEventListener('mouseover', handleLinkMouseover);
+    sentLink.addEventListener('mouseover', handleLinkMouseover);
+
+   function handleLinkClick(event) {
+        event.preventDefault();
+        removeActiveClass();
+        event.target.parentNode.classList.add('active-link');
+            window.location.href = "{{ url_for('new_email') }}";
+}
+
+    function handleLinkMouseover(event) {
+        event.target.parentNode.classList.add('active-link');
+    }
+
+    function removeActiveClass() {
+        const options = document.querySelectorAll('.options p');
+        options.forEach(option => {
+            option.classList.remove('active-link');
+        });
+    }
+</script>
+
+</body>
+</html>
