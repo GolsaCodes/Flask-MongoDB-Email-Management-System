@@ -72,7 +72,10 @@ Email-Management-System/
 │   ├── sent.html
 │   ├── new_email.html
 │   ├── report.html
-│   └── ...
+│   └── unread_inbox.html
+|   └── alphabetic_report.html
+|   └── sentEmailDet.html
+|   └── email_details.html
 ```
 
 ## Installation
@@ -142,6 +145,3 @@ http://127.0.0.1:5000/
 The original MongoDB database was hosted on a university server, which is no longer available.
 
 The application has been designed to use a configurable MongoDB connection string. To run it, configure your own MongoDB instance and provide the required database collections and documents.
-
-## Author
-Developed as a university academic project.
