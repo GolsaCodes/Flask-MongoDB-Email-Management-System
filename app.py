@@ -1,22 +1,25 @@
 from __future__ import print_function
 from flask import Flask, render_template, request, redirect, url_for 
 from pymongo import MongoClient
-from urllib.parse import quote_plus
 from flask import render_template
 from datetime import datetime
 from flask import jsonify
+import os
 
 
 app = Flask(__name__)
-fname = quote_plus('dbadmin')
-password = quote_plus('dbImp!14@2')
-#url = 'mongodb://%s:%s@78.38.35.219:27017/' % (fname, password)
-url = 'mongodb://%s:%s@172.18.17.236:27017/' % (fname, password)
 
-client = MongoClient(url)
-db = client['G9']
-collection_sent = db['sent']
-collection_received = db['received']
+MONGO_URI = os.getenv(
+    "MONGO_URI",
+    "mongodb://localhost:27017/"
+)
+
+client = MongoClient(MONGO_URI, serverSelectionTimeoutMS=5000)
+
+db = client["G9"]
+collection_sent = db["sent"]
+collection_received = db["received"]
+
 
 
 @app.route('/')
