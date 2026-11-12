@@ -66,8 +66,6 @@ Email-Management-System/
 ├── app.py
 ├── requirements.txt
 ├── README.md
-├── .gitignore
-│
 ├── templates/
 │   ├── gmail.html
 │   ├── inbox.html
